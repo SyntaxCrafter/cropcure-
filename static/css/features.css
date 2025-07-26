@@ -1,0 +1,123 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #f5f7fa;
+    color: #333;
+    transition: background 0.3s, color 0.3s;
+}
+
+/* Main Container */
+.container {
+    width: 70%;
+    margin: 50px auto;
+    text-align: center;
+}
+
+/* CROPCURE FEATURES Heading */
+.feature-heading {
+    font-size: 40px;
+    font-weight: bold;
+    color: #4CAF50;
+    margin-bottom: 30px;
+    display: inline-block;
+    transition: background 0.4s, color 0.4s, box-shadow 0.4s;
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+
+/* Gradient Effect on Hover */
+.feature-heading:hover {
+    background: linear-gradient(to right, #4CAF50, #8BC34A);
+    color: #fff;
+    box-shadow: 0 10px 25px rgba(72, 239, 72, 0.5);
+    cursor: pointer;
+}
+
+/* Dark Mode Toggle Button */
+.toggle-container {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+}
+
+.dark-mode-btn {
+    padding: 8px 15px;
+    background: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 25px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s;
+}
+
+.dark-mode-btn:hover {
+    background: linear-gradient(to right, #4CAF50, #8BC34A);
+    transform: translateY(-2px);
+}
+
+/* Table Design */
+.table-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+table {
+    width: 70%;
+    border-collapse: collapse;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    background: #fff;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: background 0.3s, box-shadow 0.3s;
+}
+
+th, td {
+    padding: 15px 20px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+    transition: background 0.3s, transform 0.3s;
+}
+
+th {
+    background: linear-gradient(to right, #4CAF50, #8BC34A);
+    color: #fff;
+    font-size: 18px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+td {
+    font-size: 16px;
+    color: #555;
+}
+
+tr:hover {
+    background: linear-gradient(to right, #e0f7fa, #80deea);
+    transform: translateY(-3px);
+}
+
+/* Dark Mode Styles */
+.dark-mode {
+    background-color: #222;
+    color: #fff;
+}
+
+.dark-mode table {
+    background-color: #333;
+    box-shadow: 0 5px 20px rgba(255, 255, 255, 0.2);
+}
+
+.dark-mode th {
+    background: linear-gradient(to right, #FF5722, #FF7043);
+}
+
+.dark-mode td {
+    color: #ddd;
+}
+
+.dark-mode tr:hover {
+    background: linear-gradient(to right, #424242, #616161);
+}

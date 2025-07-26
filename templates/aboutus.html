@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - CropCure</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/aboutus.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Header and menu positioning */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            background: white;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .dark-mode header {
+            background: #121212;
+        }
+        
+        /* Right-aligned controls */
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        /* Menu icon styles */
+        .menu-toggle {
+            cursor: pointer;
+            font-size: 2rem;
+            line-height: 1;
+            color: #333;
+            display: flex;
+            align-items: center;
+        }
+        
+        .dark-mode .menu-toggle {
+            color: white;
+        }
+        
+        .menu-toggle::before {
+            content: "☰";
+        }
+        
+        /* Search button */
+        .search-button {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: #333;
+            text-decoration: none;
+        }
+        
+        .dark-mode .search-button {
+            color: white;
+        }
+        
+        /* Navigation menu */
+        .navigation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.95);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 99;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .navigation.active {
+            transform: translateX(0);
+        }
+        
+        .navigation li {
+            margin: 20px 0;
+            list-style: none;
+        }
+        
+        .navigation a {
+            color: white !important;
+            font-size: 1.5rem;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        /* Main content */
+        .container {
+            padding: 30px;
+            margin-top: 80px;
+        }
+        
+        /* Video background */
+        .video-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .video-container video {
+            min-width: 100%;
+            min-height: 100%;
+            object-fit: cover;
+        }
+        
+        /* About section */
+        .about-section {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+        
+        .dark-mode .about-section {
+            background: rgba(30, 30, 30, 0.9);
+        }
+        
+        /* Team section */
+        .team-section {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 10px;
+        }
+        
+        .dark-mode .team-section {
+            background: rgba(30, 30, 30, 0.9);
+        }
+        
+        .team-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 20px;
+        }
+        
+        .team-member {
+            text-align: center;
+            max-width: 250px;
+        }
+        
+        .team-member img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #1e88e5;
+        }
+        
+        .dark-mode .team-member img {
+            border-color: #42a5f5;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1 class="logo">CropCure</h1>
+        <div class="header-controls">
+            <a href="/upload" class="search-button">
+                <ion-icon name="search-outline"></ion-icon>
+                <span>Search</span>
+            </a>
+            
+            <div class="theme-switch-wrapper">
+                <label class="theme-switch" for="checkbox">
+                    <input type="checkbox" id="checkbox">
+                    <div class="slider round">
+                        <ion-icon name="sunny-outline" class="sun"></ion-icon>
+                        <ion-icon name="moon-outline" class="moon"></ion-icon>
+                    </div>
+                </label>
+            </div>
+            
+            <div class="menu-toggle"></div>
+        </div>
+    </header>
+    
+    <ul class="navigation">
+        <li><a href="{{ url_for('home') }}"><ion-icon name="home-outline"></ion-icon> Home</a></li>
+        <li><a href="{{ url_for('about_us') }}" class="active"><ion-icon name="information-circle-outline"></ion-icon> About Us</a></li>
+        <li><a href="{{ url_for('features') }}"><ion-icon name="list-outline"></ion-icon> Features</a></li>
+        <li><a href="{{ url_for('contact') }}"><ion-icon name="mail-outline"></ion-icon> Contact Us</a></li>
+    </ul>
+    
+    <div class="video-container">
+        <video autoplay loop muted playsinline>
+            <source src="{{ url_for('static', filename='assets/farm1.mp4') }}" type="video/mp4">
+        </video>
+    </div>
+    
+    <div class="container">
+        <div class="about-section">
+            <div class="about-content">
+                <h1>ABOUT US</h1>
+                <p>Welcome to our AI-powered platform dedicated to revolutionizing crop health management. Our user-friendly web interface allows farmers to effortlessly upload crop images for disease detection. Powered by a cutting-edge Convolutional Neural Network (CNN) model, our system accurately identifies crop diseases and provides detailed insights, including treatment recommendations and visual guides.</p>
+                <p>To foster collaboration and innovation, we feature a vibrant user forum where farmers and agricultural experts can share knowledge, report emerging diseases, and engage in meaningful discussions.</p>
+                <p>Built with robust technologies like Node.js, Express, and MongoDB on the backend, and an intuitive HTML, CSS, and JavaScript-based frontend, our platform ensures a seamless and reliable user experience. We're here to empower farmers with the tools and community they need to safeguard their crops and boost agricultural productivity.</p>
+            </div>
+        </div>
+        <div class="team-section">
+            <h2>TEAM</h2>
+            <div class="team-container">
+                <div class="team-member">
+                    <img src="{{ url_for('static', filename='assets/photo1.jpeg') }}" alt="Vansh Tripathi">
+                    <h3>Vansh Tripathi</h3>
+                    <p>Development + Model Training + Integration</p>
+                </div>
+                <div class="team-member">
+                    <img src="{{ url_for('static', filename='assets/photo2.jpeg') }}" alt="Gandharv Krishan Sharma">
+                    <h3>Gandharv Krishan Sharma</h3>
+                    <p>Development + Model Training + Integration</p>
+                </div>
+                <div class="team-member">
+                    <img src="{{ url_for('static', filename='assets/photo3.jpeg') }}" alt="Tanmay Gautam">
+                    <h3>Tanmay Gautam</h3>
+                    <p>Development + Model Training + Integration</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script>
+        // Menu toggle functionality
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navigation = document.querySelector('.navigation');
+        
+        menuToggle.addEventListener('click', function() {
+            navigation.classList.toggle('active');
+        });
+        
+        // Close menu when clicking on a link
+        document.querySelectorAll('.navigation a').forEach(link => {
+            link.addEventListener('click', () => {
+                navigation.classList.remove('active');
+            });
+        });
+        
+        // Theme switcher functionality
+        const checkbox = document.getElementById('checkbox');
+        const body = document.body;
+        
+        checkbox.addEventListener('change', function() {
+            body.classList.toggle('dark-mode');
+            localStorage.setItem('darkMode', this.checked);
+        });
+        
+        // Check for saved theme preference
+        if (localStorage.getItem('darkMode') === 'true') {
+            body.classList.add('dark-mode');
+            checkbox.checked = true;
+        }
+    </script>
+</body>
+</html>

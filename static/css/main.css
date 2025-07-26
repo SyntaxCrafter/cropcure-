@@ -1,0 +1,446 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+:root {
+    --black: #2e2e2e;
+    --white: #fff;
+    --primary: #4CAF50;
+    --dark-bg: #121212;
+    --logo-size: 2.5em;
+}
+
+.dark {
+    --black: #fff;
+    --white: #2e2e2e;
+    background-color: var(--dark-bg);
+}
+
+body {
+    transition: background 0.3s ease;
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+/* Video Background */
+.video-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    z-index: -1;
+}
+
+.background-video,
+.background-video-dark {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+}
+
+.background-video-dark {
+    display: none;
+}
+
+.dark .background-video {
+    display: none;
+}
+
+.dark .background-video-dark {
+    display: block;
+}
+
+/* Rest of your existing CSS remains exactly the same */
+/* Header Styles */
+header {
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px 100px;
+    width: 100%;
+    z-index: 1000;
+}
+
+.logo {
+    color: var(--black);
+    font-size: var(--logo-size);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+.dark .logo {
+    color: var(--white);
+}
+
+/* Right Side Elements */
+.right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* Search Button */
+.search-button {
+    display: inline-flex;
+    align-items: center;
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    font-size: 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 1001;
+    text-decoration: none;
+}
+
+.search-button ion-icon {
+    margin-right: 5px;
+    font-size: 18px;
+}
+
+.search-button:hover {
+    background: linear-gradient(to right, #2196F3, #00FFFF);
+    transform: scale(1.05);
+}
+
+/* Theme Toggle */
+.theme-switch-wrapper {
+    display: flex;
+    align-items: center;
+    margin-left: 15px;
+    z-index: 1001;
+}
+
+.theme-switch {
+    display: inline-block;
+    height: 34px;
+    position: relative;
+    width: 60px;
+}
+
+.theme-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+.slider .sun, 
+.slider .moon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 16px;
+    color: white;
+    transition: opacity 0.3s;
+}
+
+.slider .sun {
+    left: 8px;
+    opacity: 0;
+}
+
+.slider .moon {
+    right: 8px;
+}
+
+input:checked + .slider {
+    background-color: #2196F3;
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+input:checked + .slider .sun {
+    opacity: 1;
+}
+
+input:checked + .slider .moon {
+    opacity: 0;
+}
+
+/* Hamburger Menu */
+.menuToggle {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin-left: 15px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+    z-index: 1001;
+}
+
+.menuToggle:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+}
+
+.menuToggle ion-icon {
+    font-size: 1.8em;
+    color: var(--black);
+    position: absolute;
+    transition: all 0.3s ease;
+}
+
+.menuToggle .close-icon {
+    display: none;
+}
+
+.menuToggle.active .menu-icon {
+    display: none;
+}
+
+.menuToggle.active .close-icon {
+    display: block;
+}
+
+.dark .menuToggle ion-icon {
+    color: var(--white);
+}
+
+/* Navigation Menu */
+.navigation {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--white);
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    transition: 0.5s;
+}
+
+.navigation.active {
+    left: 0;
+}
+
+.navigation li {
+    list-style: none;
+    margin: 15px 0;
+}
+
+.navigation li a {
+    display: inline-flex;
+    align-items: center;
+    font-size: 1.5em;
+    text-decoration: none;
+    color: var(--black);
+    padding: 8px 25px;
+    border-radius: 40px;
+    transition: 0.3s;
+}
+
+.navigation li a ion-icon {
+    margin-right: 10px;
+}
+
+.navigation li a:hover {
+    background: var(--black);
+    color: var(--white);
+}
+
+.navigation a.active {
+    color: var(--primary);
+    font-weight: bold;
+}
+
+/* Main Content */
+.main {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+}
+
+.mask {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    mix-blend-mode: screen;
+    user-select: none;
+    pointer-events: none;
+}
+
+.dark .mask {
+    filter: invert(1);
+    mix-blend-mode: multiply;
+}
+
+.main h2 {
+    position: relative;
+    z-index: 2;
+    color: #B0E0E6;
+    font-size: 11vw;
+    text-shadow: 0 20px 30px rgba(0, 0, 0, 0.2);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.dark h2 {
+    color: #B0E0E6;
+}
+
+.text {
+    position: relative;
+    z-index: 2;
+    font-weight: 500;
+    font-size: 1.2em;
+    color: #800000;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.dark .text {
+    color: #FF4500;
+    text-shadow: 0 0 10px #FF4500;
+}
+
+/* Social Icons */
+.social {
+    position: fixed;
+    bottom: 30px;
+    right: 100px;
+    display: flex;
+    flex-direction: column;
+    z-index: 2;
+}
+
+.social li {
+    list-style: none;
+    margin: 5px 0;
+}
+
+.social li a {
+    text-decoration: none;
+    color: var(--black);
+    font-size: 1.75em;
+    transition: 0.3s;
+    display: block;
+}
+
+.social li a:hover {
+    transform: scale(1.2);
+}
+
+.dark .social li a {
+    color: var(--white);
+}
+
+.dark .social li a[href="#"] ion-icon {
+    color: #ff0000;
+    background: white;
+    border-radius: 50%;
+    padding: 2px;
+}
+
+/* Responsive Styles */
+@media (max-width: 767px) {
+    header {
+        padding: 20px;
+    }
+    
+    .right {
+        gap: 10px;
+    }
+    
+    .theme-switch {
+        width: 50px;
+        height: 28px;
+    }
+    
+    .slider:before {
+        width: 20px;
+        height: 20px;
+    }
+    
+    input:checked + .slider:before {
+        transform: translateX(22px);
+    }
+    
+    .menuToggle {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .text {
+        left: 20px;
+        bottom: 20px;
+        font-size: 1em;
+    }
+    
+    .social {
+        right: 20px;
+        bottom: 20px;
+    }
+    
+    .navigation li a {
+        font-size: 1.2em;
+        padding: 6px 15px;
+    }
+    
+    .main h2 {
+        font-size: 15vw;
+    }
+}

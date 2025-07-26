@@ -1,0 +1,13 @@
+Python 3.10.8
+Flask 3.1.0
+mysql 8.0.41
+my sql.connector for python 9.2.0
+Tensorflow 2.18.0
+
+# import the .sql file into your comd with the help of code
+mysql -u root -p crop_diseases  < crop_diseases.sql
+
+# To run the project
+# Run the app.py 
+# Then go to http://127.0.0.1:5000/ in your browser
+
